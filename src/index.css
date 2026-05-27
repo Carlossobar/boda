@@ -109,3 +109,26 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+/* --- Responsive Utilities --- */
+.responsive-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.responsive-card {
+  height: 55vh;
+  min-height: 380px;
+}
+
+@media (max-width: 768px) {
+  .responsive-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .responsive-card {
+    height: 30vh !important;
+    min-height: 200px !important;
+  }
+}
+

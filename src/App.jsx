@@ -14,9 +14,27 @@ const tokens = {
   },
 };
 
+// ── Hook Responsivo ──────────────────────────────────────────────
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    handleResize(); // Evaluar al montar
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return isMobile;
+}
+
 // ── Navbar ───────────────────────────────────────────────────────
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -37,8 +55,8 @@ function Navbar() {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        padding: "20px 48px",
-        background: scrolled ? "rgba(240,235,227,0.92)" : "rgba(240,235,227,0.85)",
+        padding: isMobile ? "15px 24px" : "20px 48px",
+        background: scrolled ? "rgba(240,235,227,0.95)" : "rgba(240,235,227,0.85)",
         backdropFilter: "blur(8px)",
         borderBottom: scrolled ? "1px solid rgba(0,0,0,0.08)" : "none",
         transition: "all 0.4s ease",
@@ -49,7 +67,7 @@ function Navbar() {
         <span
           style={{
             fontFamily: tokens.font.serif,
-            fontSize: 28,
+            fontSize: isMobile ? 22 : 28,
             fontWeight: 400,
             letterSpacing: 2,
             color: tokens.black,
@@ -57,48 +75,114 @@ function Navbar() {
         >
           J&amp;J
         </span>
-        <span
-          style={{
-            fontFamily: tokens.font.serif,
-            fontSize: 13,
-            letterSpacing: 2,
-            color: tokens.warmGray,
-            fontStyle: "italic",
-          }}
-        >
-          June 23rd, 2025
-        </span>
-      </div>
-
-      {/* Nav links */}
-      <div style={{ display: "flex", gap: 40 }}>
-        {navLinks.map((link) => (
-          <a
-            key={link}
-            href="#"
+        {!isMobile && (
+          <span
             style={{
               fontFamily: tokens.font.serif,
               fontSize: 13,
-              letterSpacing: 3,
-              color: tokens.black,
-              textDecoration: "underline",
-              textUnderlineOffset: 4,
-              fontWeight: 500,
-              cursor: "pointer",
+              letterSpacing: 2,
+              color: tokens.warmGray,
+              fontStyle: "italic",
             }}
           >
-            {link}
-          </a>
-        ))}
+            June 23rd, 2025
+          </span>
+        )}
       </div>
+
+      {/* Nav links */}
+      {isMobile ? (
+        <div>
+          {/* Botón menú móvil */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            style={{
+              background: "none",
+              border: "none",
+              fontSize: 24,
+              cursor: "pointer",
+              color: tokens.black,
+              padding: 4,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? "✕" : "☰"}
+          </button>
+
+          {/* Menú desplegable */}
+          {menuOpen && (
+            <div
+              style={{
+                position: "absolute",
+                top: "100%",
+                left: 0,
+                right: 0,
+                background: "rgba(240,235,227,0.98)",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                padding: "24px 0",
+                gap: 20,
+                boxShadow: "0 10px 15px rgba(0,0,0,0.05)",
+                borderBottom: "1px solid rgba(0,0,0,0.05)",
+              }}
+            >
+              {navLinks.map((link) => (
+                <a
+                  key={link}
+                  href="#"
+                  onClick={() => setMenuOpen(false)}
+                  style={{
+                    fontFamily: tokens.font.serif,
+                    fontSize: 16,
+                    letterSpacing: 3,
+                    color: tokens.black,
+                    textDecoration: "none",
+                    fontWeight: 500,
+                  }}
+                >
+                  {link}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      ) : (
+        /* Menú Escritorio */
+        <div style={{ display: "flex", gap: 40 }}>
+          {navLinks.map((link) => (
+            <a
+              key={link}
+              href="#"
+              style={{
+                fontFamily: tokens.font.serif,
+                fontSize: 13,
+                letterSpacing: 3,
+                color: tokens.black,
+                textDecoration: "underline",
+                textUnderlineOffset: 4,
+                fontWeight: 500,
+                cursor: "pointer",
+              }}
+            >
+              {link}
+            </a>
+          ))}
+        </div>
+      )}
     </nav>
   );
 }
 
 // ── Hero Section ─────────────────────────────────────────────────
 function HeroSection() {
+  const isMobile = useIsMobile();
+
   return (
-    <section style={{ paddingTop: 80 }}>
+    <section style={{ paddingTop: isMobile ? 65 : 80 }}>
       {/* Big title */}
       <div
         style={{
@@ -106,19 +190,19 @@ function HeroSection() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          padding: "60px 40px 50px",
+          padding: isMobile ? "40px 20px 30px" : "60px 40px 50px",
         }}
       >
         <h1
           style={{
             fontFamily: tokens.font.serif,
-            fontSize: "clamp(72px, 12vw, 160px)",
+            fontSize: isMobile ? "clamp(38px, 10vw, 56px)" : "clamp(72px, 12vw, 160px)",
             fontWeight: 300,
             letterSpacing: 4,
             color: tokens.black,
             margin: 0,
             textAlign: "center",
-            lineHeight: 1,
+            lineHeight: 1.1,
           }}
         >
           JENNY &amp; JASON
@@ -129,8 +213,8 @@ function HeroSection() {
       <div
         style={{
           position: "relative",
-          height: "65vh",
-          minHeight: 480,
+          height: isMobile ? "50vh" : "65vh",
+          minHeight: isMobile ? 320 : 480,
           background: "linear-gradient(135deg, #7a8a7a 0%, #5a6a5a 40%, #8a9a8a 100%)",
           overflow: "hidden",
         }}
@@ -177,17 +261,17 @@ function HeroSection() {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            padding: "0 40px",
+            padding: "0 24px",
             textAlign: "center",
           }}
         >
           <p
             style={{
               fontFamily: tokens.font.serif,
-              fontSize: "clamp(18px, 2.5vw, 28px)",
+              fontSize: isMobile ? "18px" : "clamp(18px, 2.5vw, 28px)",
               color: tokens.white,
-              lineHeight: 1.7,
-              marginBottom: 32,
+              lineHeight: 1.6,
+              marginBottom: 24,
               fontStyle: "italic",
               maxWidth: 620,
             }}
@@ -199,9 +283,9 @@ function HeroSection() {
           <p
             style={{
               fontFamily: tokens.font.serif,
-              fontSize: "clamp(16px, 2vw, 24px)",
+              fontSize: isMobile ? "15px" : "clamp(16px, 2vw, 24px)",
               color: tokens.white,
-              lineHeight: 2,
+              lineHeight: 1.8,
               letterSpacing: 1,
             }}
           >
@@ -244,12 +328,10 @@ function NavCards() {
 
   return (
     <section
+      className="responsive-grid"
       style={{
         background: tokens.white,
         padding: "0 0 0 0",
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: 0,
       }}
     >
       {cards.map((card, i) => (
@@ -261,15 +343,18 @@ function NavCards() {
 
 function NavCard({ card }) {
   const [hovered, setHovered] = useState(false);
+  const isMobile = useIsMobile();
+  
+  // Activar animación de hover únicamente en desktop
+  const activeHover = hovered && !isMobile;
 
   return (
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      className="responsive-card"
       style={{
         position: "relative",
-        height: "55vh",
-        minHeight: 380,
         background: card.bg,
         display: "flex",
         alignItems: "center",
@@ -284,7 +369,7 @@ function NavCard({ card }) {
         style={{
           position: "absolute",
           inset: 0,
-          background: hovered
+          background: activeHover
             ? "rgba(0,0,0,0.15)"
             : "rgba(0,0,0,0)",
           transition: "background 0.4s ease",
@@ -306,14 +391,14 @@ function NavCard({ card }) {
         style={{
           position: "relative",
           textAlign: "center",
-          transform: hovered ? "translateY(-4px)" : "translateY(0)",
+          transform: activeHover ? "translateY(-4px)" : "translateY(0)",
           transition: "transform 0.4s ease",
         }}
       >
         <span
           style={{
             fontFamily: tokens.font.serif,
-            fontSize: "clamp(20px, 2.5vw, 32px)",
+            fontSize: isMobile ? "20px" : "clamp(20px, 2.5vw, 32px)",
             letterSpacing: 6,
             color: card.accent,
             fontWeight: 400,
@@ -332,18 +417,19 @@ function NavCard({ card }) {
 // ── Registry Section ──────────────────────────────────────────────
 function RegistrySection() {
   const [hovered, setHovered] = useState(false);
+  const isMobile = useIsMobile();
 
   return (
     <section
       style={{
         position: "relative",
-        minHeight: "75vh",
+        minHeight: isMobile ? "60vh" : "75vh",
         background: "linear-gradient(160deg, #6a7055 0%, #7a8060 40%, #5a6045 100%)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        padding: "80px 40px",
+        padding: isMobile ? "60px 24px" : "80px 40px",
         textAlign: "center",
         overflow: "hidden",
       }}
@@ -376,11 +462,11 @@ function RegistrySection() {
         <h2
           style={{
             fontFamily: tokens.font.serif,
-            fontSize: "clamp(24px, 3vw, 42px)",
-            letterSpacing: 8,
+            fontSize: isMobile ? "28px" : "clamp(24px, 3vw, 42px)",
+            letterSpacing: 6,
             color: tokens.white,
             fontWeight: 300,
-            marginBottom: 32,
+            marginBottom: isMobile ? 20 : 32,
           }}
         >
           REGISTRY
@@ -388,11 +474,11 @@ function RegistrySection() {
         <p
           style={{
             fontFamily: tokens.font.serif,
-            fontSize: "clamp(16px, 1.8vw, 22px)",
+            fontSize: isMobile ? "16px" : "clamp(16px, 1.8vw, 22px)",
             color: tokens.white,
-            lineHeight: 1.8,
+            lineHeight: 1.7,
             fontStyle: "italic",
-            marginBottom: 48,
+            marginBottom: isMobile ? 32 : 48,
           }}
         >
           Your presence is the most cherished gift. Should you wish to
@@ -406,11 +492,13 @@ function RegistrySection() {
             fontFamily: tokens.font.serif,
             fontSize: 14,
             letterSpacing: 4,
-            color: hovered ? tokens.black : tokens.white,
-            background: hovered ? "rgba(240,235,227,1)" : "rgba(180,170,150,0.5)",
+            color: hovered && !isMobile ? tokens.black : tokens.white,
+            background: hovered && !isMobile ? "rgba(240,235,227,1)" : "rgba(180,170,150,0.5)",
             border: "1px solid rgba(240,235,227,0.6)",
             borderRadius: 50,
-            padding: "20px 80px",
+            padding: isMobile ? "16px 40px" : "20px 80px",
+            maxWidth: "100%",
+            boxSizing: "border-box",
             cursor: "pointer",
             transition: "all 0.3s ease",
             backdropFilter: "blur(4px)",
@@ -425,21 +513,23 @@ function RegistrySection() {
 
 // ── Footer ────────────────────────────────────────────────────────
 function Footer() {
+  const isMobile = useIsMobile();
+
   return (
     <footer
       style={{
         background: tokens.cream,
-        padding: "80px 40px 60px",
+        padding: isMobile ? "60px 24px 40px" : "80px 40px 60px",
         textAlign: "center",
       }}
     >
       <div
         style={{
           fontFamily: tokens.font.serif,
-          fontSize: "clamp(40px, 6vw, 72px)",
+          fontSize: isMobile ? "44px" : "clamp(40px, 6vw, 72px)",
           fontWeight: 300,
           color: tokens.black,
-          marginBottom: 24,
+          marginBottom: 20,
           letterSpacing: 4,
         }}
       >
@@ -448,7 +538,7 @@ function Footer() {
       <div
         style={{
           fontFamily: tokens.font.serif,
-          fontSize: "clamp(16px, 2vw, 22px)",
+          fontSize: isMobile ? "15px" : "clamp(16px, 2vw, 22px)",
           letterSpacing: 6,
           color: tokens.black,
           lineHeight: 1.8,
