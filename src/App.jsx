@@ -42,7 +42,7 @@ function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const navLinks = ["HOME", "OUR STORY", "DETAILS", "RSVP"];
+  const navLinks = ["INICIO", "NUESTRA HISTORIA", "DETALLES", "CONFIRMAR"];
 
   return (
     <nav
@@ -73,7 +73,7 @@ function Navbar() {
             color: tokens.black,
           }}
         >
-          J&amp;J
+          C&amp;E
         </span>
         {!isMobile && (
           <span
@@ -85,7 +85,7 @@ function Navbar() {
               fontStyle: "italic",
             }}
           >
-            June 23rd, 2025
+            3 de Octubre, 2026
           </span>
         )}
       </div>
@@ -205,7 +205,7 @@ function HeroSection() {
             lineHeight: 1.1,
           }}
         >
-          JENNY &amp; JASON
+          CARLOS &amp; ELIZABETH
         </h1>
       </div>
 
@@ -276,9 +276,9 @@ function HeroSection() {
               maxWidth: 620,
             }}
           >
-            With love and gratitude, we invite you to
+            Con mucho amor y gratitud, los queremos invitar
             <br />
-            share in the joy of our wedding day.
+            a compartir junto a nosotros nuestro día de matrimonio.
           </p>
           <p
             style={{
@@ -289,11 +289,11 @@ function HeroSection() {
               letterSpacing: 1,
             }}
           >
-            Saturday, September 20, 2025
+            Sábado 3 de Octubre, 2026
             <br />
-            The Golden Elm Manor,
+            Calera de Tango
             <br />
-            St. Augustine, New York
+            Santiago, Chile
           </p>
         </div>
       </div>
@@ -305,22 +305,22 @@ function HeroSection() {
 function NavCards() {
   const cards = [
     {
-      label: "OUR STORY",
+      label: "NUESTRA HISTORIA",
       bg: "linear-gradient(160deg, #2a2420 0%, #3d3028 50%, #1a1510 100%)",
       accent: "#c8b89a",
     },
     {
-      label: "THE DETAILS",
+      label: "LOS DETALLES",
       bg: "linear-gradient(160deg, #b8aa90 0%, #c8bc9c 50%, #a89878 100%)",
       accent: "#f0ebe3",
     },
     {
-      label: "RSVP",
+      label: "CONFIRMAR",
       bg: "linear-gradient(160deg, #6a7a8a 0%, #7a8a9a 50%, #5a6a7a 100%)",
       accent: "#e8e0d8",
     },
     {
-      label: "REGISTRY",
+      label: "MESA DE REGALOS",
       bg: "linear-gradient(160deg, #b8bcc8 0%, #c8ccd8 50%, #a8acb8 100%)",
       accent: "#2a2a3a",
     },
@@ -469,7 +469,7 @@ function RegistrySection() {
             marginBottom: isMobile ? 20 : 32,
           }}
         >
-          REGISTRY
+          MESA DE REGALOS
         </h2>
         <p
           style={{
@@ -481,9 +481,9 @@ function RegistrySection() {
             marginBottom: isMobile ? 32 : 48,
           }}
         >
-          Your presence is the most cherished gift. Should you wish to
-          contribute, we've created a honeymoon registry to help us
-          embark on a memorable adventure to the Amalfi Coast.
+          Su presencia es el regalo más valioso para nosotros.
+          Si desean hacernos un obsequio, hemos preparado una lista
+          de regalos para ayudarnos a comenzar esta nueva etapa juntos.
         </p>
         <button
           onMouseEnter={() => setHovered(true)}
@@ -504,7 +504,7 @@ function RegistrySection() {
             backdropFilter: "blur(4px)",
           }}
         >
-          GO TO REGISTRY
+          VER MESA DE REGALOS
         </button>
       </div>
     </section>
@@ -533,7 +533,7 @@ function Footer() {
           letterSpacing: 4,
         }}
       >
-        J&amp;J
+        C&amp;E
       </div>
       <div
         style={{
@@ -544,9 +544,9 @@ function Footer() {
           lineHeight: 1.8,
         }}
       >
-        SATURDAY,
+        SÁBADO,
         <br />
-        SEPTEMBER 20, 2025
+        3 DE OCTUBRE, 2026
       </div>
     </footer>
   );
