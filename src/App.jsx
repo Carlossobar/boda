@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 // ── Design tokens ────────────────────────────────────────────────
 const tokens = {
@@ -28,6 +28,44 @@ function useIsMobile() {
   }, []);
 
   return isMobile;
+}
+
+// ── Componente Animado (Scroll Fade In) ──────────────────────────
+function FadeIn({ children, delay = 0, distance = 30 }) {
+  const [isVisible, setVisible] = useState(false);
+  const domRef = useRef();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setVisible(true);
+          observer.unobserve(domRef.current);
+        }
+      },
+      { threshold: 0.15 } // Se activa cuando el 15% es visible
+    );
+    if (domRef.current) observer.observe(domRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={domRef}
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "translateY(0)" : `translateY(${distance}px)`,
+        transition: `opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${delay}s, transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${delay}s`,
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      {children}
+    </div>
+  );
 }
 
 // ── Navbar ───────────────────────────────────────────────────────
@@ -191,6 +229,8 @@ function HeroSection() {
           alignItems: "center",
           justifyContent: "center",
           padding: isMobile ? "80px 20px 60px" : "120px 60px 100px",
+          height: isMobile ? "75vh" : "80vh",
+          minHeight: isMobile ? "75vh" : 600,
           overflow: "hidden",
         }}
       >
@@ -217,30 +257,32 @@ function HeroSection() {
           }}
         />
 
-        <h1
-          style={{
-            position: "relative",
-            fontFamily: tokens.font.serif,
-            fontSize: isMobile ? "clamp(38px, 10vw, 56px)" : "clamp(80px, 10vw, 180px)",
-            fontWeight: 300,
-            letterSpacing: 4,
-            color: tokens.white,
-            margin: 0,
-            textAlign: "center",
-            lineHeight: 1.1,
-            textShadow: "0 2px 20px rgba(0,0,0,0.4)",
-          }}
-        >
-          CARLOS &amp; ELIZABETH
-        </h1>
+        <FadeIn distance={40}>
+          <h1
+            style={{
+              position: "relative",
+              fontFamily: tokens.font.serif,
+              fontSize: isMobile ? "clamp(38px, 10vw, 56px)" : "clamp(80px, 10vw, 180px)",
+              fontWeight: 300,
+              letterSpacing: 4,
+              color: tokens.white,
+              margin: 0,
+              textAlign: "center",
+              lineHeight: 1.1,
+              textShadow: "0 2px 20px rgba(0,0,0,0.4)",
+            }}
+          >
+            CARLOS &amp; ELIZABETH
+          </h1>
+        </FadeIn>
       </div>
 
       {/* Hero section with invitation text */}
       <div
         style={{
           position: "relative",
-          height: isMobile ? "50vh" : "75vh",
-          minHeight: isMobile ? 320 : 560,
+          height: isMobile ? "75vh" : "75vh",
+          minHeight: isMobile ? 400 : 560,
           background: "linear-gradient(135deg, #7a8a7a 0%, #5a6a5a 40%, #8a9a8a 100%)",
           overflow: "hidden",
         }}
@@ -291,36 +333,40 @@ function HeroSection() {
             textAlign: "center",
           }}
         >
-          <p
-            style={{
-              fontFamily: tokens.font.serif,
-              fontSize: isMobile ? "18px" : "clamp(20px, 2vw, 30px)",
-              color: tokens.white,
-              lineHeight: 1.6,
-              marginBottom: 24,
-              fontStyle: "italic",
-              maxWidth: 620,
-            }}
-          >
-            Con mucho amor y gratitud, los queremos invitar
-            <br />
-            a compartir junto a nosotros nuestro día de matrimonio.
-          </p>
-          <p
-            style={{
-              fontFamily: tokens.font.serif,
-              fontSize: isMobile ? "15px" : "clamp(18px, 1.8vw, 26px)",
-              color: tokens.white,
-              lineHeight: 1.8,
-              letterSpacing: 1,
-            }}
-          >
-            Sábado 3 de Octubre, 2026
-            <br />
-            Calera de Tango
-            <br />
-            Santiago, Chile
-          </p>
+          <FadeIn distance={30}>
+            <p
+              style={{
+                fontFamily: tokens.font.serif,
+                fontSize: isMobile ? "18px" : "clamp(20px, 2vw, 30px)",
+                color: tokens.white,
+                lineHeight: 1.6,
+                marginBottom: 24,
+                fontStyle: "italic",
+                maxWidth: 620,
+              }}
+            >
+              Con mucho amor y gratitud, los queremos invitar
+              <br />
+              a compartir junto a nosotros nuestro día de matrimonio.
+            </p>
+          </FadeIn>
+          <FadeIn distance={30} delay={0.2}>
+            <p
+              style={{
+                fontFamily: tokens.font.serif,
+                fontSize: isMobile ? "15px" : "clamp(18px, 1.8vw, 26px)",
+                color: tokens.white,
+                lineHeight: 1.8,
+                letterSpacing: 1,
+              }}
+            >
+              Sábado 3 de Octubre, 2026
+              <br />
+              Calera de Tango
+              <br />
+              Santiago, Chile
+            </p>
+          </FadeIn>
         </div>
       </div>
     </section>
@@ -419,22 +465,25 @@ function NavCard({ card }) {
           textAlign: "center",
           transform: activeHover ? "translateY(-4px)" : "translateY(0)",
           transition: "transform 0.4s ease",
+          width: "100%",
         }}
       >
-        <span
-          style={{
-            fontFamily: tokens.font.serif,
-            fontSize: isMobile ? "20px" : "clamp(22px, 2.5vw, 36px)",
-            letterSpacing: 6,
-            color: card.accent,
-            fontWeight: 400,
-            display: "block",
-            paddingBottom: 8,
-            borderBottom: `1px solid ${card.accent}`,
-          }}
-        >
-          {card.label}
-        </span>
+        <FadeIn distance={20}>
+          <span
+            style={{
+              fontFamily: tokens.font.serif,
+              fontSize: isMobile ? "20px" : "clamp(22px, 2.5vw, 36px)",
+              letterSpacing: 6,
+              color: card.accent,
+              fontWeight: 400,
+              display: "block",
+              paddingBottom: 8,
+              borderBottom: `1px solid ${card.accent}`,
+            }}
+          >
+            {card.label}
+          </span>
+        </FadeIn>
       </div>
     </div>
   );
@@ -449,7 +498,7 @@ function RegistrySection() {
     <section
       style={{
         position: "relative",
-        minHeight: isMobile ? "60vh" : "80vh",
+        minHeight: isMobile ? "75vh" : "80vh",
         background: "linear-gradient(160deg, #6a7055 0%, #7a8060 40%, #5a6045 100%)",
         display: "flex",
         flexDirection: "column",
@@ -485,53 +534,59 @@ function RegistrySection() {
       ))}
 
       <div style={{ position: "relative", zIndex: 1, maxWidth: 720 }}>
-        <h2
-          style={{
-            fontFamily: tokens.font.serif,
-            fontSize: isMobile ? "28px" : "clamp(28px, 3vw, 48px)",
-            letterSpacing: 6,
-            color: tokens.white,
-            fontWeight: 300,
-            marginBottom: isMobile ? 20 : 32,
-          }}
-        >
-          MESA DE REGALOS
-        </h2>
-        <p
-          style={{
-            fontFamily: tokens.font.serif,
-            fontSize: isMobile ? "16px" : "clamp(18px, 1.6vw, 24px)",
-            color: tokens.white,
-            lineHeight: 1.7,
-            fontStyle: "italic",
-            marginBottom: isMobile ? 32 : 48,
-          }}
-        >
-          Su presencia es el regalo más valioso para nosotros.
-          Si desean hacernos un obsequio, hemos preparado una lista
-          de regalos para ayudarnos a comenzar esta nueva etapa juntos.
-        </p>
-        <button
-          onMouseEnter={() => setHovered(true)}
-          onMouseLeave={() => setHovered(false)}
-          style={{
-            fontFamily: tokens.font.serif,
-            fontSize: isMobile ? 14 : 16,
-            letterSpacing: 4,
-            color: hovered && !isMobile ? tokens.black : tokens.white,
-            background: hovered && !isMobile ? "rgba(240,235,227,1)" : "rgba(180,170,150,0.5)",
-            border: "1px solid rgba(240,235,227,0.6)",
-            borderRadius: 50,
-            padding: isMobile ? "16px 40px" : "20px 80px",
-            maxWidth: "100%",
-            boxSizing: "border-box",
-            cursor: "pointer",
-            transition: "all 0.3s ease",
-            backdropFilter: "blur(4px)",
-          }}
-        >
-          VER MESA DE REGALOS
-        </button>
+        <FadeIn distance={30}>
+          <h2
+            style={{
+              fontFamily: tokens.font.serif,
+              fontSize: isMobile ? "28px" : "clamp(28px, 3vw, 48px)",
+              letterSpacing: 6,
+              color: tokens.white,
+              fontWeight: 300,
+              marginBottom: isMobile ? 20 : 32,
+            }}
+          >
+            MESA DE REGALOS
+          </h2>
+        </FadeIn>
+        <FadeIn distance={30} delay={0.2}>
+          <p
+            style={{
+              fontFamily: tokens.font.serif,
+              fontSize: isMobile ? "16px" : "clamp(18px, 1.6vw, 24px)",
+              color: tokens.white,
+              lineHeight: 1.7,
+              fontStyle: "italic",
+              marginBottom: isMobile ? 32 : 48,
+            }}
+          >
+            Su presencia es el regalo más valioso para nosotros.
+            Si desean hacernos un obsequio, hemos preparado una lista
+            de regalos para ayudarnos a comenzar esta nueva etapa juntos.
+          </p>
+        </FadeIn>
+        <FadeIn distance={30} delay={0.4}>
+          <button
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+            style={{
+              fontFamily: tokens.font.serif,
+              fontSize: isMobile ? 14 : 16,
+              letterSpacing: 4,
+              color: hovered && !isMobile ? tokens.black : tokens.white,
+              background: hovered && !isMobile ? "rgba(240,235,227,1)" : "rgba(180,170,150,0.5)",
+              border: "1px solid rgba(240,235,227,0.6)",
+              borderRadius: 50,
+              padding: isMobile ? "16px 40px" : "20px 80px",
+              maxWidth: "100%",
+              boxSizing: "border-box",
+              cursor: "pointer",
+              transition: "all 0.3s ease",
+              backdropFilter: "blur(4px)",
+            }}
+          >
+            VER MESA DE REGALOS
+          </button>
+        </FadeIn>
       </div>
     </section>
   );
@@ -549,31 +604,35 @@ function Footer() {
         textAlign: "center",
       }}
     >
-      <div
-        style={{
-          fontFamily: tokens.font.serif,
-          fontSize: isMobile ? "44px" : "clamp(48px, 6vw, 84px)",
-          fontWeight: 300,
-          color: tokens.black,
-          marginBottom: 20,
-          letterSpacing: 4,
-        }}
-      >
-        C&amp;E
-      </div>
-      <div
-        style={{
-          fontFamily: tokens.font.serif,
-          fontSize: isMobile ? "15px" : "clamp(18px, 1.8vw, 24px)",
-          letterSpacing: 6,
-          color: tokens.black,
-          lineHeight: 1.8,
-        }}
-      >
-        SÁBADO,
-        <br />
-        3 DE OCTUBRE, 2026
-      </div>
+      <FadeIn distance={20}>
+        <div
+          style={{
+            fontFamily: tokens.font.serif,
+            fontSize: isMobile ? "44px" : "clamp(48px, 6vw, 84px)",
+            fontWeight: 300,
+            color: tokens.black,
+            marginBottom: 20,
+            letterSpacing: 4,
+          }}
+        >
+          C&amp;E
+        </div>
+      </FadeIn>
+      <FadeIn distance={20} delay={0.2}>
+        <div
+          style={{
+            fontFamily: tokens.font.serif,
+            fontSize: isMobile ? "15px" : "clamp(18px, 1.8vw, 24px)",
+            letterSpacing: 6,
+            color: tokens.black,
+            lineHeight: 1.8,
+          }}
+        >
+          SÁBADO,
+          <br />
+          3 DE OCTUBRE, 2026
+        </div>
+      </FadeIn>
     </footer>
   );
 }
