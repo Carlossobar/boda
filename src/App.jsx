@@ -213,44 +213,34 @@ function HeroSection() {
       <div
         style={{
           position: "relative",
-          height: isMobile ? "50vh" : "75vh",
-          minHeight: isMobile ? 320 : 560,
-          background: "linear-gradient(135deg, #7a8a7a 0%, #5a6a5a 40%, #8a9a8a 100%)",
+          height: isMobile ? "55vh" : "80vh",
+          minHeight: isMobile ? 360 : 600,
           overflow: "hidden",
         }}
       >
-        {/* Simulated botanical background */}
+        {/* Background photo */}
+        <img
+          src={`${import.meta.env.BASE_URL}hero-couple.jpg`}
+          alt="Carlos y Elizabeth"
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center 20%",
+          }}
+        />
+
+        {/* Dark gradient overlay for text legibility */}
         <div
           style={{
             position: "absolute",
             inset: 0,
             background:
-              "radial-gradient(ellipse at 20% 60%, rgba(180,200,160,0.4) 0%, transparent 60%), radial-gradient(ellipse at 80% 30%, rgba(120,150,110,0.3) 0%, transparent 50%), linear-gradient(160deg, #6b7a60 0%, #4a5a45 50%, #7a8a70 100%)",
+              "linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.65) 100%)",
           }}
         />
-        {/* Decorative circles (mimicking flowers) */}
-        {[
-          { top: "15%", left: "10%", size: 40, opacity: 0.3 },
-          { top: "25%", left: "18%", size: 25, opacity: 0.2 },
-          { top: "40%", left: "7%", size: 55, opacity: 0.25 },
-          { top: "10%", right: "12%", size: 35, opacity: 0.3 },
-          { top: "30%", right: "8%", size: 20, opacity: 0.2 },
-        ].map((dot, i) => (
-          <div
-            key={i}
-            style={{
-              position: "absolute",
-              top: dot.top,
-              left: dot.left,
-              right: dot.right,
-              width: dot.size,
-              height: dot.size,
-              borderRadius: "50%",
-              background: "rgba(230,220,190,0.5)",
-              opacity: dot.opacity,
-            }}
-          />
-        ))}
 
         {/* Centered text */}
         <div
@@ -260,8 +250,8 @@ function HeroSection() {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            justifyContent: "center",
-            padding: "0 24px",
+            justifyContent: "flex-end",
+            padding: isMobile ? "0 24px 48px" : "0 40px 80px",
             textAlign: "center",
           }}
         >
@@ -274,6 +264,7 @@ function HeroSection() {
               marginBottom: 24,
               fontStyle: "italic",
               maxWidth: 620,
+              textShadow: "0 2px 12px rgba(0,0,0,0.5)",
             }}
           >
             Con mucho amor y gratitud, los queremos invitar
@@ -287,6 +278,7 @@ function HeroSection() {
               color: tokens.white,
               lineHeight: 1.8,
               letterSpacing: 1,
+              textShadow: "0 2px 12px rgba(0,0,0,0.5)",
             }}
           >
             Sábado 3 de Octubre, 2026
