@@ -55,7 +55,7 @@ function Navbar() {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        padding: isMobile ? "15px 24px" : "20px 48px",
+        padding: isMobile ? "15px 24px" : "20px 80px",
         background: scrolled ? "rgba(240,235,227,0.95)" : "rgba(240,235,227,0.85)",
         backdropFilter: "blur(8px)",
         borderBottom: scrolled ? "1px solid rgba(0,0,0,0.08)" : "none",
@@ -152,7 +152,7 @@ function Navbar() {
         </div>
       ) : (
         /* Menú Escritorio */
-        <div style={{ display: "flex", gap: 40 }}>
+        <div style={{ display: "flex", gap: 48, alignItems: "center" }}>
           {navLinks.map((link) => (
             <a
               key={link}
@@ -182,7 +182,7 @@ function HeroSection() {
   const isMobile = useIsMobile();
 
   return (
-    <section style={{ paddingTop: isMobile ? 65 : 80 }}>
+    <section style={{ paddingTop: isMobile ? 65 : 90 }}>
       {/* Big title */}
       <div
         style={{
@@ -190,13 +190,13 @@ function HeroSection() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          padding: isMobile ? "40px 20px 30px" : "60px 40px 50px",
+          padding: isMobile ? "40px 20px 30px" : "80px 60px 60px",
         }}
       >
         <h1
           style={{
             fontFamily: tokens.font.serif,
-            fontSize: isMobile ? "clamp(38px, 10vw, 56px)" : "clamp(72px, 12vw, 160px)",
+            fontSize: isMobile ? "clamp(38px, 10vw, 56px)" : "clamp(80px, 10vw, 180px)",
             fontWeight: 300,
             letterSpacing: 4,
             color: tokens.black,
@@ -213,8 +213,8 @@ function HeroSection() {
       <div
         style={{
           position: "relative",
-          height: isMobile ? "50vh" : "65vh",
-          minHeight: isMobile ? 320 : 480,
+          height: isMobile ? "50vh" : "75vh",
+          minHeight: isMobile ? 320 : 560,
           background: "linear-gradient(135deg, #7a8a7a 0%, #5a6a5a 40%, #8a9a8a 100%)",
           overflow: "hidden",
         }}
@@ -268,7 +268,7 @@ function HeroSection() {
           <p
             style={{
               fontFamily: tokens.font.serif,
-              fontSize: isMobile ? "18px" : "clamp(18px, 2.5vw, 28px)",
+              fontSize: isMobile ? "18px" : "clamp(20px, 2vw, 30px)",
               color: tokens.white,
               lineHeight: 1.6,
               marginBottom: 24,
@@ -283,7 +283,7 @@ function HeroSection() {
           <p
             style={{
               fontFamily: tokens.font.serif,
-              fontSize: isMobile ? "15px" : "clamp(16px, 2vw, 24px)",
+              fontSize: isMobile ? "15px" : "clamp(18px, 1.8vw, 26px)",
               color: tokens.white,
               lineHeight: 1.8,
               letterSpacing: 1,
@@ -398,7 +398,7 @@ function NavCard({ card }) {
         <span
           style={{
             fontFamily: tokens.font.serif,
-            fontSize: isMobile ? "20px" : "clamp(20px, 2.5vw, 32px)",
+            fontSize: isMobile ? "20px" : "clamp(22px, 2.5vw, 36px)",
             letterSpacing: 6,
             color: card.accent,
             fontWeight: 400,
@@ -423,13 +423,13 @@ function RegistrySection() {
     <section
       style={{
         position: "relative",
-        minHeight: isMobile ? "60vh" : "75vh",
+        minHeight: isMobile ? "60vh" : "80vh",
         background: "linear-gradient(160deg, #6a7055 0%, #7a8060 40%, #5a6045 100%)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        padding: isMobile ? "60px 24px" : "80px 40px",
+        padding: isMobile ? "60px 24px" : "100px 60px",
         textAlign: "center",
         overflow: "hidden",
       }}
@@ -458,11 +458,11 @@ function RegistrySection() {
         />
       ))}
 
-      <div style={{ position: "relative", zIndex: 1, maxWidth: 680 }}>
+      <div style={{ position: "relative", zIndex: 1, maxWidth: 720 }}>
         <h2
           style={{
             fontFamily: tokens.font.serif,
-            fontSize: isMobile ? "28px" : "clamp(24px, 3vw, 42px)",
+            fontSize: isMobile ? "28px" : "clamp(28px, 3vw, 48px)",
             letterSpacing: 6,
             color: tokens.white,
             fontWeight: 300,
@@ -474,7 +474,7 @@ function RegistrySection() {
         <p
           style={{
             fontFamily: tokens.font.serif,
-            fontSize: isMobile ? "16px" : "clamp(16px, 1.8vw, 22px)",
+            fontSize: isMobile ? "16px" : "clamp(18px, 1.6vw, 24px)",
             color: tokens.white,
             lineHeight: 1.7,
             fontStyle: "italic",
@@ -490,7 +490,7 @@ function RegistrySection() {
           onMouseLeave={() => setHovered(false)}
           style={{
             fontFamily: tokens.font.serif,
-            fontSize: 14,
+            fontSize: isMobile ? 14 : 16,
             letterSpacing: 4,
             color: hovered && !isMobile ? tokens.black : tokens.white,
             background: hovered && !isMobile ? "rgba(240,235,227,1)" : "rgba(180,170,150,0.5)",
@@ -519,14 +519,14 @@ function Footer() {
     <footer
       style={{
         background: tokens.cream,
-        padding: isMobile ? "60px 24px 40px" : "80px 40px 60px",
+        padding: isMobile ? "60px 24px 40px" : "100px 60px 80px",
         textAlign: "center",
       }}
     >
       <div
         style={{
           fontFamily: tokens.font.serif,
-          fontSize: isMobile ? "44px" : "clamp(40px, 6vw, 72px)",
+          fontSize: isMobile ? "44px" : "clamp(48px, 6vw, 84px)",
           fontWeight: 300,
           color: tokens.black,
           marginBottom: 20,
@@ -538,7 +538,7 @@ function Footer() {
       <div
         style={{
           fontFamily: tokens.font.serif,
-          fontSize: isMobile ? "15px" : "clamp(16px, 2vw, 22px)",
+          fontSize: isMobile ? "15px" : "clamp(18px, 1.8vw, 24px)",
           letterSpacing: 6,
           color: tokens.black,
           lineHeight: 1.8,
