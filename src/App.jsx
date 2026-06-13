@@ -821,6 +821,7 @@ function RsvpSection() {
   const [formData, setFormData] = useState({
     name: "",
     attending: "yes",
+    guestsCount: "1",
     dietary: "",
     message: ""
   });
@@ -954,17 +955,42 @@ function RsvpSection() {
 
               {formData.attending === "yes" && (
                 <FadeIn distance={10}>
-                  <div>
-                    <input
-                      type="text"
-                      name="dietary"
-                      placeholder="Restricciones alimentarias (Opcional)"
-                      value={formData.dietary}
-                      onChange={handleChange}
-                      style={inputStyle}
-                      onFocus={(e) => e.target.style.borderBottomColor = tokens.olive}
-                      onBlur={(e) => e.target.style.borderBottomColor = tokens.warmGray}
-                    />
+                  <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+                    <div>
+                      <p style={{ fontFamily: tokens.font.serif, fontSize: 16, color: tokens.warmGray, marginBottom: 8, letterSpacing: 1 }}>CANTIDAD DE ASISTENTES</p>
+                      <select
+                        name="guestsCount"
+                        value={formData.guestsCount}
+                        onChange={handleChange}
+                        style={{
+                          ...inputStyle,
+                          padding: "8px 0",
+                          cursor: "pointer",
+                        }}
+                        onFocus={(e) => e.target.style.borderBottomColor = tokens.olive}
+                        onBlur={(e) => e.target.style.borderBottomColor = tokens.warmGray}
+                      >
+                        <option value="1">1 persona</option>
+                        <option value="2">2 personas</option>
+                        <option value="3">3 personas</option>
+                        <option value="4">4 personas</option>
+                        <option value="5">5 personas</option>
+                        <option value="6">6 personas</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <input
+                        type="text"
+                        name="dietary"
+                        placeholder="Restricciones alimentarias (Opcional)"
+                        value={formData.dietary}
+                        onChange={handleChange}
+                        style={inputStyle}
+                        onFocus={(e) => e.target.style.borderBottomColor = tokens.olive}
+                        onBlur={(e) => e.target.style.borderBottomColor = tokens.warmGray}
+                      />
+                    </div>
                   </div>
                 </FadeIn>
               )}
