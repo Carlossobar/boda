@@ -237,7 +237,7 @@ function HeroSection() {
   const isMobile = useIsMobile();
 
   return (
-    <section style={{ paddingTop: isMobile ? 65 : 90 }}>
+    <section>
       {/* Big title with couple photo */}
       <div
         style={{
