@@ -116,21 +116,10 @@ export function RsvpSection() {
               color: tokens.olive,
               fontStyle: "italic",
               lineHeight: 1.6,
-              marginBottom: 8,
-            }}
-          >
-            Por favor confírmanos tu asistencia antes del 3 de Septiembre.
-          </p>
-          <p
-            style={{
-              fontFamily: tokens.font.serif,
-              fontSize: isMobile ? "18px" : "21px",
-              color: tokens.black,
-              lineHeight: 1.5,
               margin: 0,
             }}
           >
-            En caso de no confirmar, <strong style={{ fontWeight: 700, color: "#000000" }}>se entenderá que no participarás de la boda</strong>.
+            Por favor confírmanos tu asistencia antes del 3 de Septiembre.
           </p>
         </div>
       </FadeIn>
@@ -154,67 +143,60 @@ export function RsvpSection() {
               </p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+            <div>
+              {/* Sección Editorial de Etiqueta & Protocolo */}
               <div
                 style={{
-                  background: "rgba(107, 112, 85, 0.08)",
-                  border: `1px solid rgba(107, 112, 85, 0.3)`,
-                  borderRadius: 6,
-                  padding: isMobile ? "18px 20px" : "22px 28px",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 12,
+                  background: "linear-gradient(135deg, rgba(247, 246, 240, 0.6) 0%, rgba(255, 255, 255, 0.95) 100%)",
+                  border: `1px solid rgba(107, 112, 85, 0.22)`,
+                  borderRadius: 8,
+                  padding: isMobile ? "24px 20px" : "32px 36px",
+                  marginBottom: 36,
                   textAlign: "center",
+                  boxShadow: "0 4px 15px rgba(0,0,0,0.015)",
                 }}
               >
-                <p
-                  style={{
-                    fontFamily: tokens.font.serif,
-                    fontSize: isMobile ? 19 : 22,
-                    color: tokens.black,
-                    margin: 0,
-                    lineHeight: 1.6,
-                  }}
-                >
-                  <strong style={{ color: tokens.olive, fontWeight: 700, fontSize: "1.08em", letterSpacing: 0.5 }}>NOTA IMPORTANTE:</strong> Por favor toma en cuenta que la confirmación es exclusivamente para los{" "}
-                  <strong style={{ fontWeight: 700, color: "#000000", paddingBottom: 1 }}>
-                    acompañantes invitados por los novios
-                  </strong>{" "}
-                  indicados en tu invitación.
-                </p>
-                <div style={{ height: 1, background: "rgba(107, 112, 85, 0.25)", margin: "4px auto", width: "80%" }} />
-                <p
-                  style={{
-                    fontFamily: tokens.font.serif,
-                    fontSize: isMobile ? 19 : 22,
-                    color: tokens.black,
-                    margin: 0,
-                    lineHeight: 1.6,
-                  }}
-                >
-                  Amamos a los niños, pero esta vez la boda se realizará{" "}
-                  <strong style={{ fontWeight: 700, color: "#000000", fontStyle: "normal", paddingBottom: 1 }}>
-                    sin ellos
-                  </strong>
-                  . ¡Agradecemos mucho tu comprensión!
-                </p>
-                <div style={{ height: 1, background: "rgba(107, 112, 85, 0.25)", margin: "4px auto", width: "80%" }} />
-                <p
-                  style={{
-                    fontFamily: tokens.font.serif,
-                    fontSize: isMobile ? 19 : 22,
-                    color: tokens.black,
-                    margin: 0,
-                    lineHeight: 1.6,
-                  }}
-                >
-                  En caso de no confirmar tu asistencia,{" "}
-                  <strong style={{ fontWeight: 700, color: "#000000", fontStyle: "normal", paddingBottom: 1 }}>
-                    se entenderá que no participarás de la boda
-                  </strong>
-                  .
-                </p>
+                <div style={{ display: "inline-block", marginBottom: 20 }}>
+                  <span
+                    style={{
+                      fontFamily: tokens.font.serif,
+                      fontSize: 13,
+                      letterSpacing: 4,
+                      textTransform: "uppercase",
+                      color: tokens.olive,
+                      borderBottom: `1px solid ${tokens.olive}`,
+                      paddingBottom: 4,
+                    }}
+                  >
+                    Etiqueta & Protocolo
+                  </span>
+                </div>
+
+                <div style={{ display: "flex", flexDirection: "column", gap: 16, textAlign: "left" }}>
+                  <div style={{ display: "flex", alignItems: "flex-start", gap: 14 }}>
+                    <span style={{ color: tokens.olive, fontSize: 18, lineHeight: 1.4 }}>✧</span>
+                    <p style={{ fontFamily: tokens.font.serif, fontSize: isMobile ? 18 : 20, color: tokens.black, margin: 0, lineHeight: 1.6 }}>
+                      <strong style={{ fontWeight: 600, color: tokens.olive }}>Pases personales:</strong> La recepción está contemplada exclusivamente para los acompañantes detallados en tu invitación.
+                    </p>
+                  </div>
+
+                  <div style={{ display: "flex", alignItems: "flex-start", gap: 14 }}>
+                    <span style={{ color: tokens.olive, fontSize: 18, lineHeight: 1.4 }}>✧</span>
+                    <p style={{ fontFamily: tokens.font.serif, fontSize: isMobile ? 18 : 20, color: tokens.black, margin: 0, lineHeight: 1.6 }}>
+                      <strong style={{ fontWeight: 600, color: tokens.olive }}>Solo adultos:</strong> Amamos a los niños, pero en esta ocasión hemos planificado una velada íntima exclusivamente para adultos.
+                    </p>
+                  </div>
+
+                  <div style={{ display: "flex", alignItems: "flex-start", gap: 14 }}>
+                    <span style={{ color: tokens.olive, fontSize: 18, lineHeight: 1.4 }}>✧</span>
+                    <p style={{ fontFamily: tokens.font.serif, fontSize: isMobile ? 18 : 20, color: tokens.black, margin: 0, lineHeight: 1.6 }}>
+                      <strong style={{ fontWeight: 600, color: tokens.olive }}>Confirmación:</strong> Si no recibimos tu confirmación antes de la fecha indicada, entenderemos con cariño que no nos podrás acompañar en la celebración.
+                    </p>
+                  </div>
+                </div>
               </div>
+
+              <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 32 }}>
 
               <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
                 <p style={{ fontFamily: tokens.font.serif, fontSize: isMobile ? 18 : 20, color: tokens.warmGray, margin: 0, letterSpacing: 1 }}>NOMBRES DE LOS ASISTENTES</p>
@@ -286,8 +268,8 @@ export function RsvpSection() {
                       <span style={{ fontSize: 20, fontWeight: 600, lineHeight: 1 }}>+</span> Agregar un acompañante más
                     </button>
                   </div>
-                  <span style={{ fontFamily: tokens.font.serif, fontSize: isMobile ? 16 : 18, color: tokens.black, marginLeft: 2 }}>
-                    * <strong style={{ fontWeight: 700, color: "#000000" }}>Solo los acompañantes contemplados en tu invitación</strong>
+                  <span style={{ fontFamily: tokens.font.serif, fontSize: isMobile ? 15 : 17, color: tokens.warmGray, fontStyle: "italic", marginLeft: 2 }}>
+                    * Solo acompañantes contemplados en tu invitación
                   </span>
                 </div>
               </div>
@@ -378,6 +360,7 @@ export function RsvpSection() {
                 </button>
               </div>
             </form>
+            </div>
           )}
         </div>
       </FadeIn>
