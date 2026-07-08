@@ -53,7 +53,7 @@ export function DetailsPage({ onBack }) {
           <h1 style={{ fontFamily: tokens.font.serif, fontSize: isMobile ? 36 : 56, fontWeight: 300, color: tokens.olive, marginBottom: 24 }}>
             Nuestro nuevo comienzo
           </h1>
-          <p style={{ fontFamily: tokens.font.sansSerif, fontSize: isMobile ? 16 : 18, color: tokens.black, lineHeight: 1.8, marginBottom: 48, fontStyle: "italic" }}>
+          <p style={{ fontFamily: tokens.font.sansSerif, fontSize: isMobile ? 19 : 22, color: tokens.black, lineHeight: 1.8, marginBottom: 48, fontStyle: "italic" }}>
             Por el fruto de oraciones, sueños y mucho amor, con gratitud a Dios<br />
             queremos invitarte a celebrar el inicio de nuestra familia
           </p>
@@ -91,7 +91,7 @@ export function DetailsPage({ onBack }) {
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
               </div>
               <div style={{ fontFamily: tokens.font.serif, fontSize: 24, color: tokens.black }}>
-                Calera de Tango
+                Talagante
               </div>
             </div>
           </div>
@@ -104,8 +104,8 @@ export function DetailsPage({ onBack }) {
             <h2 style={{ fontFamily: tokens.font.serif, fontSize: isMobile ? 32 : 40, fontWeight: 300, color: tokens.olive, marginBottom: 16 }}>
               Ubicación
             </h2>
-            <p style={{ fontFamily: tokens.font.sansSerif, fontSize: isMobile ? 16 : 18, color: tokens.black, lineHeight: 1.6, marginBottom: 32 }}>
-              La celebración se realizará en una hermosa parcela en <strong>Calera de Tango</strong>, Región Metropolitana. <br />
+            <p style={{ fontFamily: tokens.font.sansSerif, fontSize: isMobile ? 19 : 22, color: tokens.black, lineHeight: 1.6, marginBottom: 32 }}>
+              La celebración se realizará en una hermosa parcela en <strong>Talagante</strong>, Región Metropolitana. <br />
               Haz clic en los botones a continuación para abrir la ruta directamente en tu GPS y llegar sin problemas.
             </p>
 
@@ -116,7 +116,7 @@ export function DetailsPage({ onBack }) {
                 rel="noopener noreferrer"
                 style={{
                   fontFamily: tokens.font.serif,
-                  fontSize: 14,
+                  fontSize: isMobile ? 16 : 18,
                   letterSpacing: 2,
                   color: tokens.white,
                   background: tokens.olive,
@@ -136,7 +136,7 @@ export function DetailsPage({ onBack }) {
                 rel="noopener noreferrer"
                 style={{
                   fontFamily: tokens.font.serif,
-                  fontSize: 14,
+                  fontSize: isMobile ? 16 : 18,
                   letterSpacing: 2,
                   color: tokens.olive,
                   background: "transparent",
@@ -168,13 +168,13 @@ export function DetailsPage({ onBack }) {
           <h2 style={{ fontFamily: tokens.font.serif, fontSize: isMobile ? 32 : 40, fontWeight: 300, color: tokens.olive, marginBottom: 20 }}>
             Confirma tu asistencia
           </h2>
-          <p style={{ fontFamily: tokens.font.sansSerif, fontSize: 16, color: tokens.black, lineHeight: 1.6, marginBottom: 20 }}>
+          <p style={{ fontFamily: tokens.font.sansSerif, fontSize: isMobile ? 19 : 22, color: tokens.black, lineHeight: 1.6, marginBottom: 20 }}>
             Nos encantaría contar contigo en este día tan especial.<br />
             Por favor, confirmar asistencia antes del 12 de septiembre.
           </p>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12, marginTop: 24 }}>
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={tokens.olive} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-            <span style={{ fontFamily: tokens.font.sansSerif, fontSize: 20, color: tokens.black, fontWeight: 500 }}>9 222 354 51</span>
+            <span style={{ fontFamily: tokens.font.sansSerif, fontSize: isMobile ? 22 : 26, color: tokens.black, fontWeight: 500 }}>9 222 354 51</span>
           </div>
         </FadeIn>
       </div>

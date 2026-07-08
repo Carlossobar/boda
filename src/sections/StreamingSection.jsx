@@ -42,7 +42,7 @@ export function StreamingSection() {
         <p
           style={{
             fontFamily: tokens.font.sansSerif,
-            fontSize: isMobile ? "16px" : "18px",
+            fontSize: isMobile ? "19px" : "22px",
             lineHeight: 1.8,
             maxWidth: 600,
             margin: "0 auto 40px",
@@ -59,7 +59,7 @@ export function StreamingSection() {
           borderRadius: 12,
           display: "inline-block",
         }}>
-          <p style={{ fontFamily: tokens.font.serif, fontSize: 18, margin: 0, fontStyle: "italic", letterSpacing: 1 }}>
+          <p style={{ fontFamily: tokens.font.serif, fontSize: isMobile ? 19 : 22, margin: 0, fontStyle: "italic", letterSpacing: 1 }}>
             El enlace de YouTube estará disponible aquí el día de la boda.
           </p>
         </div>

@@ -15,7 +15,7 @@ export function Itinerary() {
     { time: "15:00", title: "Cocktail", icon: "🥂", desc: "Brindemos juntos por este nuevo comienzo mientras disfrutamos de unos aperitivos." },
     { time: "16:00", title: "Recepción", icon: "✨", desc: "Nuestra entrada oficial para dar inicio a la celebración." },
     { time: "17:00", title: "Banquete", icon: "🍽️", desc: "Disfrutaremos de una deliciosa cena en compañía de todos ustedes." },
-    { time: "21:00", title: "Despedida", icon: "", desc: "Es momento de despedirnos " },
+    { time: "21:00", title: "Despedida", icon: "🫂", desc: "Es momento de despedirnos " },
 
   ];
 

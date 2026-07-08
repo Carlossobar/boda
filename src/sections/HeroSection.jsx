@@ -134,7 +134,7 @@ export function HeroSection() {
             <p
               style={{
                 fontFamily: tokens.font.serif,
-                fontSize: isMobile ? "18px" : "clamp(18px, 1.8vw, 26px)",
+                fontSize: isMobile ? "22px" : "clamp(22px, 2vw, 30px)",
                 color: tokens.white,
                 lineHeight: 1.8,
                 letterSpacing: 1,
