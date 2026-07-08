@@ -116,9 +116,21 @@ export function RsvpSection() {
               color: tokens.olive,
               fontStyle: "italic",
               lineHeight: 1.6,
+              marginBottom: 8,
             }}
           >
             Por favor confírmanos tu asistencia antes del 3 de Septiembre.
+          </p>
+          <p
+            style={{
+              fontFamily: tokens.font.serif,
+              fontSize: isMobile ? "18px" : "21px",
+              color: tokens.black,
+              lineHeight: 1.5,
+              margin: 0,
+            }}
+          >
+            En caso de no confirmar, <strong style={{ fontWeight: 700, color: "#000000" }}>se entenderá que no participarás de la boda</strong>.
           </p>
         </div>
       </FadeIn>
@@ -185,6 +197,22 @@ export function RsvpSection() {
                     sin ellos
                   </strong>
                   . ¡Agradecemos mucho tu comprensión!
+                </p>
+                <div style={{ height: 1, background: "rgba(107, 112, 85, 0.25)", margin: "4px auto", width: "80%" }} />
+                <p
+                  style={{
+                    fontFamily: tokens.font.serif,
+                    fontSize: isMobile ? 19 : 22,
+                    color: tokens.black,
+                    margin: 0,
+                    lineHeight: 1.6,
+                  }}
+                >
+                  En caso de no confirmar tu asistencia,{" "}
+                  <strong style={{ fontWeight: 700, color: "#000000", fontStyle: "normal", paddingBottom: 1 }}>
+                    se entenderá que no participarás de la boda
+                  </strong>
+                  .
                 </p>
               </div>
 
